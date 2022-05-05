@@ -1,3 +1,5 @@
+/* ============ GERAL ============ */
+
 * {
   margin: 0;
   padding: 0;
@@ -23,10 +25,20 @@
   --nav-height: 7.2rem; /* variável criada para definir a altura do nav por será feito cálculos com ela */
 }
 
+html, body{
+  width: 100%;
+  height: 100%;
+}
+
 body {
   font-family: 'DM Sans';
   font-size: 1.6rem;
   text-align: center;
+  overflow: overlay; /* deixa a barra de rolagem por cima do layout */
+}
+
+ul{
+  list-style: none;
 }
 
 .wrapper{
@@ -50,19 +62,144 @@ nav{
   transform: translateX(-50%); /* ajustando a posição do nav */
 }
 
+nav .wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav.scroll{
+  background-color: var(--brand-green);
+  width: 100vw;
+}
+
+nav.scroll svg:nth-child(1) path{
+  fill: #fff;
+}
+
+nav.scroll button path{
+  stroke: #fff;
+}
+
+/* ============ MENU EXPANDED ============ */
+
+body.menu-expanded{
+  overflow: hidden;
+}
+
+/* estou informando que tudo vai desaparecer menos o que está no nav */
+body.menu-expanded > :not(nav) { 
+  display: none;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu{
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu{
+  opacity: 1;
+  visibility: visible;
+}
+
+body.menu-expanded .menu{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--brand-green);
+
+  width: 100vw;
+  height: 100vh;
+
+  padding-top: var(--nav-height);
+}
+
+body.menu-expanded nav{
+  position: relative;
+}
+
+.menu ul:nth-child(1){
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+
+  margin-top: 6rem;
+
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+  text-align: center;
+}
+
+.menu ul li a{
+  text-decoration: none;
+  color: var(--white);
+}
+
+.menu .button{
+  background: #FFFFFF;
+  border-radius: 4rem;
+
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  color: var(--brand-green);
+ 
+  display: inline-block;
+  padding: 16px 32px;
+
+  margin: 4.8rem 0 8rem 0;
+
+}
+
+.social-links{
+  display: flex;
+  gap: 3.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+body.menu-expanded .logo,
+body.menu-expanded button{
+  position: relative;
+  z-index: 100;
+}
+
+body.menu-expanded .logo path{
+  fill: #fff;
+}
+
+body.menu-expanded button path{
+  stroke: #fff;
+}
+
+nav button{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 /* ============ HEADER ============ */
 
 header {
-  width: 37.5rem;
   margin: calc(4.1rem + var(--nav-height)) auto 0 auto; /* aajustando o header junto ao nav */
   padding: 0 2rem 0 2rem;
 }
 
 header::before{
   content: "";
-  width: 100vw;
+
+  width: 100%;
   height: calc(108rem + var(--nav-height)); /* ajustando o before junto ao nav */
+
   background-color: var(--brand-green-light);
+
   display: block;
   position: absolute;
   top: 0;
@@ -87,10 +224,11 @@ header h1 {
 header p {
   font: 1.8rem;
   line-height: 150%;
-  color: var(--grady-paragraph);
   margin-bottom: 3.2rem;
-}
 
+  color: var(--grady-paragraph);
+}
+ 
 header button {
   background-color: var(--brand-green);
 
@@ -116,8 +254,11 @@ header button {
 
 header img{
   display: block;
+
   width: 26.4rem; /* width definido para que a imagem acompanhe a mudança de tamanho */
+
   margin-inline: auto;
+
   object-position: 0 2rem; /* muda a posição da imagem dentro dela mesma */
 }
 
@@ -147,3 +288,4 @@ header img{
   line-height: 150%;
   color: var(--brand-green);
 }
+
