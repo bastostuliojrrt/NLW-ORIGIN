@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -18,6 +18,9 @@
   --gray-headline: hsl(105, 100%, 5%);
   --grady-paragraph: hsl(104, 16%, 24%);
   --white: hsl(0, 0%, 100%);
+
+  /* Variables */
+  --nav-height: 7.2rem; /* variável criada para definir a altura do nav por será feito cálculos com ela */
 }
 
 body {
@@ -26,34 +29,69 @@ body {
   text-align: center;
 }
 
-header{
+.wrapper{
   width: 37.5rem;
-  margin: 4.1rem auto 0 auto;
+  margin-inline: auto;
+  padding-inline: 2.4rem;
+}
+
+/* ============ NAVGATOR ============ */
+
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: var(--nav-height); 
+
+  position: fixed; /* Adicionamos isso para manter o nav fixo no topo */
+  top: 0; /* ajustando a posição do nav */
+  left: 50%; /* ajustando a posição do nav */
+  transform: translateX(-50%); /* ajustando a posição do nav */
+}
+
+/* ============ HEADER ============ */
+
+header {
+  width: 37.5rem;
+  margin: calc(4.1rem + var(--nav-height)) auto 0 auto; /* aajustando o header junto ao nav */
   padding: 0 2rem 0 2rem;
 }
 
-h1 {
-  font-size: 3.4rem;
-  color: var(--gray-headline);
-  line-height: 130%;
-  margin-bottom: 2.4rem;
+header::before{
+  content: "";
+  width: 100vw;
+  height: calc(108rem + var(--nav-height)); /* ajustando o before junto ao nav */
+  background-color: var(--brand-green-light);
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
-h4 {
+header h4 {
   font-size: 1.4rem;
   line-height: 150%;
   color: var(--brand-green);
   margin-bottom: 1.6rem;
 }
 
-p {
+header h1 {
+  font-size: 3.4rem;
+  color: var(--gray-headline);
+  line-height: 130%;
+  margin-bottom: 2.4rem;
+}
+
+header p {
   font: 1.8rem;
   line-height: 150%;
   color: var(--grady-paragraph);
   margin-bottom: 3.2rem;
 }
 
-button {
+header button {
   background-color: var(--brand-green);
 
   display: flex;
@@ -74,4 +112,38 @@ button {
   text-transform: uppercase;
 
   font-weight: 700;
+}
+
+header img{
+  display: block;
+  width: 26.4rem; /* width definido para que a imagem acompanhe a mudança de tamanho */
+  margin-inline: auto;
+  object-position: 0 2rem; /* muda a posição da imagem dentro dela mesma */
+}
+
+.numbers {
+    width: 32.7rem;
+  padding-block: 4rem; /* padding referente ao padding-top e padding-bottom */
+  margin-inline: auto; /* margem referente ao margin-left e margin-right */
+
+  background-color: var(--brand-beige);
+  border: 1px solid var(--brand-green-light);
+  border-radius: 0.6rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6rem;
+}
+
+.number-content h3{
+  font-size: 4.8rem;
+  line-height: 130%;
+  margin-bottom: 0.4rem;
+}
+
+.number-content p {
+  margin: 0;
+  line-height: 150%;
+  color: var(--brand-green);
 }
