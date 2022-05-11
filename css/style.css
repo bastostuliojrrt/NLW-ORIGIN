@@ -25,6 +25,10 @@
   --nav-height: 7.2rem; /* variável criada para definir a altura do nav por será feito cálculos com ela */
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 html, body{
   width: 100%;
   height: 100%;
@@ -35,6 +39,7 @@ body {
   font-size: 1.6rem;
   text-align: center;
   overflow: overlay; /* deixa a barra de rolagem por cima do layout */
+  background-color: var(--brand-green-light2);
 }
 
 ul{
@@ -57,9 +62,11 @@ nav{
   height: var(--nav-height); 
 
   position: fixed; /* Adicionamos isso para manter o nav fixo no topo */
+  width: 100vw;
   top: 0; /* ajustando a posição do nav */
-  left: 50%; /* ajustando a posição do nav */
-  transform: translateX(-50%); /* ajustando a posição do nav */
+   /* ajustando a posição do nav */
+
+  z-index: 100;
 }
 
 nav .wrapper{
@@ -70,15 +77,20 @@ nav .wrapper{
 
 nav.scroll{
   background-color: var(--brand-green);
-  width: 100vw;
+  
 }
 
-nav.scroll svg:nth-child(1) path{
+nav.scroll .logo path{
   fill: #fff;
 }
 
 nav.scroll button path{
   stroke: #fff;
+}
+
+section{
+  padding-block: 10rem;
+
 }
 
 /* ============ MENU EXPANDED ============ */
@@ -89,7 +101,7 @@ body.menu-expanded{
 
 /* estou informando que tudo vai desaparecer menos o que está no nav */
 body.menu-expanded > :not(nav) { 
-  display: none;
+  visibility: hidden;
 }
 
 .menu,
@@ -105,6 +117,10 @@ body.menu-expanded .close-menu{
   visibility: visible;
 }
 
+.menu{
+  transform: translateY(100%);
+}
+
 body.menu-expanded .menu{
   position: fixed;
   top: 0;
@@ -115,11 +131,11 @@ body.menu-expanded .menu{
   height: 100vh;
 
   padding-top: var(--nav-height);
+
+  transition: transform 400ms;
+  transform: translateY(0);
 }
 
-body.menu-expanded nav{
-  position: relative;
-}
 
 .menu ul:nth-child(1){
   display: flex;
@@ -185,15 +201,14 @@ nav button{
   cursor: pointer;
 }
 
-/* ============ HEADER ============ */
+/* ============ HOME ============ */
 
-header {
-  margin: calc(4.1rem + var(--nav-height)) auto 0 auto; /* aajustando o header junto ao nav */
-  padding: 0 2rem 0 2rem;
+#home {
+  padding-top: calc(4.1rem + var(--nav-height)); /* aajustando o header junto ao nav */
 }
 
-header::before{
-  content: "";
+#home::before{
+  content: '';
 
   width: 100%;
   height: calc(108rem + var(--nav-height)); /* ajustando o before junto ao nav */
@@ -207,21 +222,21 @@ header::before{
   z-index: -1;
 }
 
-header h4 {
+#home h4 {
   font-size: 1.4rem;
   line-height: 150%;
   color: var(--brand-green);
   margin-bottom: 1.6rem;
 }
 
-header h1 {
+#home h1 {
   font-size: 3.4rem;
   color: var(--gray-headline);
   line-height: 130%;
   margin-bottom: 2.4rem;
 }
 
-header p {
+#home p {
   font: 1.8rem;
   line-height: 150%;
   margin-bottom: 3.2rem;
@@ -229,7 +244,7 @@ header p {
   color: var(--grady-paragraph);
 }
  
-header button {
+#home button {
   background-color: var(--brand-green);
 
   display: flex;
@@ -252,7 +267,7 @@ header button {
   font-weight: 700;
 }
 
-header img{
+#home img{
   display: block;
 
   width: 26.4rem; /* width definido para que a imagem acompanhe a mudança de tamanho */
@@ -262,7 +277,7 @@ header img{
   object-position: 0 2rem; /* muda a posição da imagem dentro dela mesma */
 }
 
-.numbers {
+#home .numbers {
     width: 32.7rem;
   padding-block: 4rem; /* padding referente ao padding-top e padding-bottom */
   margin-inline: auto; /* margem referente ao margin-left e margin-right */
@@ -277,15 +292,59 @@ header img{
   gap: 6rem;
 }
 
-.number-content h3{
+#home .number-content h3{
   font-size: 4.8rem;
   line-height: 130%;
   margin-bottom: 0.4rem;
 }
 
-.number-content p {
+#home .number-content p {
   margin: 0;
   line-height: 150%;
   color: var(--brand-green);
 }
 
+/* ============ SERVICES ============ */
+
+#services .cards{
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+#services header h4{
+  font-size: 1.4rem;
+  line-height: 150%;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+
+  color: var(--brand-green);
+
+  margin-bottom: 1.6rem;
+}
+
+#services header h2{
+  font-size: 3rem;
+  line-height: 3.9rem;
+
+  padding-inline: 2rem;
+
+  color: var(--gray-headline);
+
+  margin-bottom: 6rem;
+}
+
+#services .card{
+  padding: 2.4rem;
+  text-align: left;
+
+  background-color: var(--white);
+
+  border: 1px solid var(--brand-green-light);
+}
+
+#services .card h3 {
+  margin-block: 1.6rem;
+}
+
+/* ============ ABOUT ============ */
